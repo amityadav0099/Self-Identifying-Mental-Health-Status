@@ -1,0 +1,16 @@
+
+{% extends 'assessment/base.html' %}
+
+{% block content %}
+<div class="text-center mt-5">
+  <h1>Welcome to MindCheck 🧠</h1>
+  <p>Assess your mental health and get personalized guidance.</p>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'assessment:quiz' %}" class="btn btn-primary mt-3">Start Assessment</a>
+    
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-success mt-3">Login to Begin</a>
+  {% endif %}
+</div>
+{% endblock %}
