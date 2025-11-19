@@ -9,3 +9,4 @@ urlpatterns = [
     path('result/', views.result, name='result'),
     
 ]
+

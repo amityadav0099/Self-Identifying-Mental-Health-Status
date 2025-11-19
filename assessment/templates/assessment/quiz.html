@@ -1,13 +1,18 @@
-{% extends 'assessment/base.html' %}
-
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-  <div class="container mt-4">
-    <h2>Take Assessment</h2>
-    <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Submit</button>
+<div class="container mt-4">
+    <h2>Mental Health Assessment</h2>
+    <p>Answer the questions below honestly.</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
     </form>
-  </div>
+</div>
 {% endblock %}
+
+

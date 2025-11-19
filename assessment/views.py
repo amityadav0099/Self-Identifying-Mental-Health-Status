@@ -1,39 +1,32 @@
 from django.shortcuts import render, redirect
 from .forms import AssessmentForm
 
-
 def start_assessment(request):
     if request.method == 'POST':
         form = AssessmentForm(request.POST)
         if form.is_valid():
-            # Get the answers from the form
+
             q1 = form.cleaned_data['question1']
             q2 = form.cleaned_data['question2']
 
-            # Simple scoring logic
             score = 0
 
-            # Question 1 scoring
-            if q1 == 'never':
-                score += 0
-            elif q1 == 'sometimes':
-                score += 1
-            elif q1 == 'often':
-                score += 2
-            elif q1 == 'always':
-                score += 3
+            score_map_q1 = {
+                'never': 0,
+                'sometimes': 1,
+                'often': 2,
+                'always': 3,
+            }
+            score += score_map_q1[q1]
 
-            # Question 2 scoring
-            if q2 == 'excellent':
-                score += 0
-            elif q2 == 'good':
-                score += 1
-            elif q2 == 'fair':
-                score += 2
-            elif q2 == 'poor':
-                score += 3
+            score_map_q2 = {
+                'excellent': 0,
+                'good': 1,
+                'fair': 2,
+                'poor': 3,
+            }
+            score += score_map_q2[q2]
 
-            # Store result in session
             request.session['score'] = score
             return redirect('assessment:result')
 
@@ -44,10 +37,8 @@ def start_assessment(request):
 
 
 def result(request):
-    # Get the score from the session
     score = request.session.get('score', 0)
 
-    # Simple interpretation
     if score <= 2:
         message = "You seem to be doing well! Keep it up! 😃"
     elif score <= 4:

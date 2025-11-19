@@ -1,16 +1,33 @@
-
-{% extends 'assessment/base.html' %}
-
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<div class="text-center mt-5">
-  <h1>Welcome to MindCheck 🧠</h1>
-  <p>Assess your mental health and get personalized guidance.</p>
 
-  {% if user.is_authenticated %}
-    <a href="{% url 'assessment:quiz' %}" class="btn btn-primary mt-3">Start Assessment</a>
-    
-  {% else %}
-    <a href="{% url 'login' %}" class="btn btn-success mt-3">Login to Begin</a>
-  {% endif %}
-</div>
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Understand Your Mental Well-Being</h1>
+        <p>Your emotional health matters. Take a self-assessment to get insights.</p>
+
+        <a href="{% url 'assessment:quiz' %}" class="btn-start">Start Assessment</a>
+    </div>
+    <div class="hero-image">
+        <img src="{% static 'assessment/images/mental_health.svg.jpg' %}" alt="Mental Health">
+    </div>
+</section>
+<section class="features">
+    <div class="feature-card">
+        <h3>Quick Assessment</h3>
+        <p>Answer simple questions and get instant mental-health insights.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Science-Based</h3>
+        <p>Based on standard psychological frameworks and well-known indicators.</p>
+    </div>
+
+    <div class="feature-card">
+        <h3>Completely Private</h3>
+        <p>Your responses are confidential and never stored permanently.</p>
+    </div>
+</section>
 {% endblock %}
+
